@@ -1,0 +1,137 @@
+global:
+  evaluation_interval: 15s
+  scrape_interval: 30s
+  scrape_timeout: 10s
+scrape_configs:
+  - job_name: 'ipmi'
+    scrape_interval: 1m
+    scrape_timeout: 30s
+    metrics_path: /metrics
+    scheme: http
+    static_configs: 
+      - targets: ["10.10.7.53:9290"]      
+  - job_name: 'Ceph_exporter'
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.9.53:9283","10.10.9.54:9283","10.10.9.55:9283"]
+  - job_name: 'BEST PROD'
+    metrics_path: /probe
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    params:
+        module: [http_2xx]
+    static_configs:
+        - targets:
+            - http://wsi.bestundertaking.net/wsintegrations/swagger-ui.html
+            - http://admin:admin@10.0.21.186:9111/Manager/services
+            - http://smiomobapp.bestundertaking.net/fgweb/
+            - http://cmds.bestundertaking.net/AMI-0.0.1/swagger-ui.html
+            - http://uhes.bestundertaking.net/UHES-0.0.1/swagger-ui.html
+            - http://smio.bestundertaking.net/WFMS-0.0.1/swagger-ui.html
+            - http://mm.bestundertaking.net/MM-0.0.1/swagger-ui.html
+            - http://10.0.21.155:8161/console/auth/login
+            - http://10.0.21.96:8181/fg-sg-hes-cmd-scheduler/services
+            - http://10.0.21.96:8182/fg-sg-hes-cmd-scheduler/services
+            - http://10.0.21.55:8185/fg-sg-hes-cmd-scheduler/services
+        - labels:
+            name: BEST PROD URLs
+            instance: 'BEST PROD URLs'
+            job: 'BEST PROD'
+            group: 'BEST PROD'
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 10.10.7.53:9115  # The blackbox exporter's real hostname:port.
+
+  - job_name: 'BEST UAT'
+    metrics_path:  /probe
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    params:
+        module: [http_2xx]
+    static_configs:
+        - targets:
+
+            - http://10.0.15.99:7072/wsintegrations/swagger-ui.html
+            - http://admin:admin@10.0.15.127:9111/Manager/services
+            - http://10.0.15.108:9090/share/page/
+            - http://10.0.15.137:9387/fgweb/
+            - http://10.0.15.99:9488/AMI-0.0.1/swagger-ui.html
+            - http://10.0.15.99:9488/UHES-0.0.1/swagger-ui.html
+            - http://103.179.111.20:9392/WFMS-0.0.1/swagger-ui.html
+            - http://10.0.15.137:9392/MM-0.0.1/swagger-ui.html
+            - http://10.0.15.127:8161/console/auth/login
+            - http://10.0.15.216:8081/fg-sg-hes-cmd-scheduler/services
+            - http://10.0.15.142:8081/fg-sg-hes-cmd-scheduler/services
+        - labels:
+            name: BEST UAT URLs
+            instance: 'BEST UAT URLs'
+            job: 'BEST UAT'
+            group: 'BEST UAT'
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 10.10.7.53:9115  # The blackbox exporter's real hostname:port.   
+
+  - job_name: "HES_UAT_VMs"
+    scrape_interval: 30s
+    static_configs:
+        - targets: ["10.0.17.213:9100","10.0.17.79:9100","10.0.15.127:9100","10.0.15.99:9100","10.0.15.137:9100","10.0.15.108:9100","10.0.15.142:9100","10.0.15.216:9100"]
+
+          #- job_name: "PHYSICAL_NODES"
+          # scrape_interval: 30s
+          # static_configs:
+          # - targets: ["10.10.7.53:9101","10.10.7.54:9101","10.10.7.55:9101","10.10.7.57:9101","10.10.7.58:9101","10.10.7.59:9101","10.10.7.60:9101","10.10.7.61:9101","10.10.7.62:9101","10.10.7.63:9101","10.10.7.64:9101"]
+
+  - job_name: "HES_PROD_VMs"
+    scrape_interval: 30s
+    static_configs:
+        - targets: ["10.0.21.151:9100","10.0.21.137:9100","10.0.21.186:9100","10.0.21.155:9100","10.0.21.55:9100","10.0.21.96:9100","10.0.21.117:9100","10.0.21.112:9100","10.0.21.82:9100","10.0.21.57:9100","10.0.21.139:9100","10.0.21.168:9100","10.0.21.185:9100","10.0.21.51:9100","10.0.21.246:9100","10.0.21.59:9100","10.0.21.248:9100","10.0.21.166:9100","10.0.21.135:9100","10.0.21.188:9100","10.0.21.64:9100"]   
+
+  - job_name: "BIHAR_PROD_VMs"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.64.85:9100","10.10.68.168:9100", "10.10.68.194:9100","10.10.66.160:9100","10.10.66.179:9100","10.10.66.167:9100","10.10.68.159:9100","10.10.68.97:9100","10.10.68.164:9100","10.10.68.168:9100","10.10.66.132:9100","10.10.66.42:9100","10.10.66.69:9100","10.10.65.102:9100","10.10.65.92:9100","10.10.65.184:9100","10.10.65.24:9100","10.10.64.28:9100","10.10.64.158:9100","10.10.64.95:9100","10.10.64.198:9100","10.10.64.94:9100","10.10.64.73:9100","10.10.64.81:9100","10.10.64.56:9100","10.10.64.141:9100","10.10.64.102:9100","10.10.64.192:9100","10.10.64.143:9100","10.10.64.182:9100","10.10.64.179:9100","10.10.64.106:9100","10.10.64.183:9100","10.10.64.139:9100","10.10.64.78:9100","10.10.64.27:9100","10.10.64.65:9100","10.10.64.66:9100","10.10.64.85:9100","10.10.64.150:9100","10.10.64.57:9100"]
+
+
+  - job_name: "LB_VMs"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.0.21.57:9101","10.10.65.81:9101","10.10.65.42:9101","10.10.64.33:9101","10.10.64.170:9101","10.10.65.149:9100"]  
+
+  - job_name: "rabbitmq_cluster1"
+    scrape_interval: 30s
+    static_configs:
+        - targets: ["10.10.65.24:15692","10.10.65.184:15692"] 
+
+  - job_name: "HES_ASSAM"
+    scrape_interval: 30s
+    static_configs:
+        - targets: ["10.10.97.28:9100","10.10.97.96:9100","10.10.97.183:9100","10.10.97.86:9100","10.10.96.84:9100","10.10.96.159:9100","10.10.96.47:9100","10.10.96.50:9100","10.10.96.90:9100","10.10.96.55:9100","10.10.96.42:9100","10.10.96.94:9100","10.10.96.125:9100","10.10.96.25:9100","10.10.96.53:9100","10.10.98.23:9100","10.10.98.42:9100","10.10.96.82:9100","10.10.96.27:9100","10.10.96.39:9100","10.10.99.191:9100","10.10.99.138:9100","10.10.99.165:9100","10.10.96.72:9100","10.10.96.46:9100","10.10.96.146:9100","10.10.96.115:9100","10.10.96.34:9100","10.10.96.140:9100","10.10.98.180:9100","10.10.98.31:9100","10.10.96.195:9100","10.10.96.117:9100","10.10.96.51:9100","10.10.96.156:9100"]
+
+  - job_name: "windows_vm"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.97.31:9182","10.10.100.66:9182","10.10.100.64:9182","10.10.100.68:9182"]
+
+        
+  - job_name: "Bihar_windows_vm"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.67.148:9182","10.10..67.149:9182","10.10.67.111:9182","10.10..67.55:9182","10.10.69.198:9182","10.10.69.139:9182","10.10.65.72:9182","10.10.65.122:9182","10.10.65.64:9182","10.10.65.70:9182","10.10.65.193:9182","10.10.65.127:9182"]
+
+  - job_name: "ASSAM_LB_VMs"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.97.177:9101","10.10.97.125:9101","10.10.100.73:9101","10.10.100.177:9101","10.10.97.185:9101","10.10.97.111:9101","10.10.97.75:9101","10.10.97.27:9101","10.10.96.99:9101","10.10.96.93:9101","10.10.96.92:9101","10.10.96.64:9101","10.10.98.92:9101","10.10.98.162:9101","10.10.96.126:9101","10.10.96.179:9101","10.10.96.133:9101","10.10.96.112:9101","10.10.98.64:9101","10.10.98.196:9101","10.10.96.172:9101","10.10.96.87:9101","10.10.107.37:9101","10.10.107.194:9101"]
+
+  - job_name: "ASSAM_windows_vm"
+    scrape_interval: 30s
+    static_configs:
+      - targets: ["10.10.101.69:9182","10.10.101.114:9182","10.10.101.181:9182","10.10.101.93:9182","10.10.97.31:9182","10.10.97.102:9182","10.10.100.154:9182","10.10.100.59:9182","10.10.97.173:9182","10.10.97.41:9182","10.10.97.158:9182","10.10.97.57:9182"]

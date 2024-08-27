@@ -1,0 +1,7 @@
+[ml2]
+path_mtu = 9000
+
+
+[ml2_type_flat]
+flat_networks = physnet-lb,physnet1058,physnet1059,physnet1063,physnet1065,physnet1066,physnet1067,physnet201,physnet202,physnet203,physnet204,physnet205,physnet206,physnet207,physnet208,physnet209,physnet210,physnet211,physnet212,physnet213,physnet214,physnet215,physnet216,physnet217,physnet218,physnet219,physnet220,physnet221,physnet222,physnet223,physnet224,physnet225,physnet226,physnet227,physnet228,physnet229,physnet230
+

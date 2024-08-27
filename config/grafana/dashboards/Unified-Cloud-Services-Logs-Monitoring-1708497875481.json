@@ -1,0 +1,700 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "This dashboard ment to describe OpenStack cloud services logs",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 25,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 18,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "editorMode": "code",
+          "expr": "{filename=~\"/var/log/syslog\"} |~ \"((?i)nova-compute|(?)${Node})\" ",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Nova-Compute logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 19,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "editorMode": "code",
+          "expr": "{filename=~\"/openstack/log/.*_cinder_api_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"${Log_level}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Cinder Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 6,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "editorMode": "code",
+          "expr": "{filename=~\"/openstack/log/.*_placement_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"${Log_level}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Masakari Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 35
+      },
+      "id": 14,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_placement_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"${Log_level}\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Placement Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 13,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{﻿﻿﻿filename﻿﻿=~﻿﻿\"/openstack/log/.*_nova_api_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"﻿﻿﻿}﻿﻿﻿ |~ ﻿﻿﻿\"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Nova Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 12,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_neutron_server_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Neutron Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 65
+      },
+      "id": 15,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_rabbit_mq_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Rabbit-MQ Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 75
+      },
+      "id": 10,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_keystone_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Keystone Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 85
+      },
+      "id": 9,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_horizon_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Horizon Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 95
+      },
+      "id": 8,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_glance_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Glance Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 105
+      },
+      "id": 7,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_heat_api_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"$Log_level\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Heat-API Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 115
+      },
+      "id": 2,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "editorMode": "code",
+          "expr": "{job=\"varlogs\"} |~ \"((?i)error|(?i)warning|(?i)fail)\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "All-In-One Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 125
+      },
+      "id": 17,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_utility_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"((?i)error|(?i)warning|(?i)fail|(?i)info)\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Utility Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 135
+      },
+      "id": 16,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_repo_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"((?i)error|(?i)warning|(?i)fail|(?i)info)\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Repo Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "OOWsaL7Sk"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 145
+      },
+      "id": 11,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": false,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "OOWsaL7Sk"
+          },
+          "expr": "{filename=~\"/openstack/log/.*_memcached_container.*/syslog|/var/log/lxc-cache-prep-commands\\\\.log\"} |~ \"((?i)error|(?i)warning|(?i)fail|(?i)info)\"",
+          "refId": "A"
+        }
+      ],
+      "title": "Memcached Logs",
+      "type": "logs"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Loki",
+          "value": "OOWsaL7Sk"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS",
+        "options": [],
+        "query": "loki",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "allValue": "((?i)error|(?i)warning|(?i)fail|(?i)info)",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": "Log_level",
+        "multi": false,
+        "name": "Log_level",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "info",
+            "value": "info"
+          },
+          {
+            "selected": false,
+            "text": "error",
+            "value": "error"
+          },
+          {
+            "selected": false,
+            "text": "fail",
+            "value": "fail"
+          },
+          {
+            "selected": false,
+            "text": "fatal",
+            "value": "fatal"
+          },
+          {
+            "selected": false,
+            "text": "warning",
+            "value": "warning"
+          },
+          {
+            "selected": false,
+            "text": "debug",
+            "value": "debug"
+          }
+        ],
+        "query": "info,error,fail,fatal,warning,debug",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "No data sources found",
+          "value": ""
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Host_Datasource",
+        "options": [],
+        "query": "loki",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "/cloud*/",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "OOWsaL7Sk"
+        },
+        "definition": "label_values(libvirt_up, instance)",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "Node",
+        "options": [],
+        "query": {
+          "query": "label_values(libvirt_up, instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/(.*):[0-9]+/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Unified Cloud Services Logs Monitoring",
+  "uid": "Q6QB7Ah4k12",
+  "version": 3,
+  "weekStart": ""
+}

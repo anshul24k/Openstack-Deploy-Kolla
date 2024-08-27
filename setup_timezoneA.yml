@@ -1,0 +1,61 @@
+- name: Setup Timezone
+  hosts: all
+  user: root
+  gather_facts: false
+  
+  vars:
+    ntp_servers: []
+
+  tasks:
+    - name: Installing required packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - tzdata
+        - chrony
+
+    - name: Make sure chrony is started up
+      service: 
+        name: chronyd 
+        state: restarted 
+        enabled: yes
+
+    - name: Set timezone to Asia/Kolkata
+      timezone:
+        name: Asia/Kolkata
+
+    - name: Copy using inline content
+      lineinfile:
+        path: "{{ item }}"
+        line: "export HISTTIMEFORMAT='%F %T'"
+        state: present
+        regexp: '^export HISTTIMEFORMAT'
+      with_items:
+        - /etc/profile
+        - /root/.bashrc
+
+    - name: Comment out specific lines in chrony.conf
+      lineinfile:
+        path: /etc/chrony/chrony.conf
+        regexp: '^(server|pool)'
+        state: absent
+        insertafter: EOF
+      notify:
+        - restart chronyd
+
+    - name: Add NTP server(s) to chrony.conf
+      lineinfile:
+        path: /etc/chrony/chrony.conf
+        line: "server {{ item }} iburst"
+      loop: "{{ ntp_servers.split(',') | map('trim') | list }}"
+      notify:
+        - restart chronyd
+
+  handlers:
+    - name: restart chronyd
+      service:
+        name: chronyd
+        state: restarted
+
+

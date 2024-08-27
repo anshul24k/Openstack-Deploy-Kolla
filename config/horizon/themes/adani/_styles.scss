@@ -1,0 +1,219 @@
+@import "./branding.scss";
+@import "./_variables.scss";
+
+
+.navbar-brand {
+  &.niccloud, &.niccloud:hover {
+    background: $blue-darker;
+  }
+  .openstack-logo {
+    width: 200px;
+  }
+}
+
+.container.login.niccloud-login {
+  margin-top: 0px;
+  padding-top: $navbar-height * 2;
+}
+
+
+body {
+  // Paint the entire page background with the same color as the navbar background
+  // so that no matter how far the user scrolls down, it will still appear to have
+  // a navbar.  Then paint the background of the portion of the content body on the
+  // right with the desired background color.
+  #main_content {
+    background: $blue-darker;
+  }
+  #content_body > .container-fluid {
+    background: $body-bg;
+  }
+}
+
+#sidebar {
+  height: 100vh;
+  background: $blue-darker;
+  .panel {
+    color: $body-bg;
+    background: $blue-darker;
+
+    > a {
+      color: $bc-white;
+      background: $blue-darker;
+
+      &:hover {
+        background: $blue-dark;
+      }
+    }
+
+    .list-group-item:not(.active) {
+      color: #fff;
+      background: $blue-dark;
+    }
+
+    a:not(.active):hover {
+      color: #fff;
+      background: $blue-less-dark;
+    }
+  }
+}
+
+
+.breadcrumb {
+  background-color: $body-bg;
+}
+
+#splash {
+  background-color: $blue-darker;
+  .panel, .panel-default > .logo-panel-heading, .panel-footer {
+    background-color: $blue-darker;
+    color: #ffffff;
+    border: 0;
+    margin-top: 5em;
+  }
+  input {
+    color: #ffffff;
+    background-color: $blue-dark;
+    border-color: #001727;
+  }
+}
+
+button.close {
+  opacity: unset;
+}
+
+.btn-default {
+  &:hover, &:focus, &:active {
+    color: $btn-default-hover-color;
+    background-color: $btn-default-hover-bg;
+    border-color: $btn-default-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-default-active-color;
+      background-color: $btn-default-active-bg;
+      border-color: $btn-default-active-border;
+    }
+  }
+}
+
+.btn-primary {
+  &:hover, &:focus, &:active {
+    color: $btn-primary-hover-color;
+    background-color: $btn-primary-hover-bg;
+    border-color: $btn-primary-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-primary-active-color;
+      background-color: $btn-primary-active-bg;
+      border-color: $btn-primary-active-border;
+      &.disabled {
+        color: $btn-primary-color;
+        background-color: $btn-primary-bg;
+        border-color: $btn-primary-border;
+      }
+    }
+  }
+}
+
+.btn-success {
+  &:hover, &:focus, &:active {
+    color: $btn-success-hover-color;
+    background-color: $btn-success-hover-bg;
+    border-color: $btn-success-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-success-active-color;
+      background-color: $btn-success-active-bg;
+      border-color: $btn-success-active-border;
+      &.disabled {
+        color: $btn-success-color;
+        background-color: $btn-success-bg;
+        border-color: $btn-success-border;
+      }
+    }
+  }
+}
+
+.btn-info {
+  &:hover, &:focus, &:active {
+    color: $btn-info-hover-color;
+    background-color: $btn-info-hover-bg;
+    border-color: $btn-info-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-info-active-color;
+      background-color: $btn-info-active-bg;
+      border-color: $btn-info-active-border;
+      &.disabled {
+        color: $btn-info-color;
+        background-color: $btn-info-bg;
+        border-color: $btn-info-border;
+      }
+    }
+  }
+}
+
+.btn-warning {
+  &:hover, &:focus, &:active {
+    color: $btn-warning-hover-color;
+    background-color: $btn-warning-hover-bg;
+    border-color: $btn-warning-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-warning-active-color;
+      background-color: $btn-warning-active-bg;
+      border-color: $btn-warning-active-border;
+      &.disabled {
+        color: $btn-warning-color;
+        background-color: $btn-warning-bg;
+        border-color: $btn-warning-border;
+      }
+    }
+  }
+}
+
+.btn-danger {
+  &:hover, &:focus, &:active {
+    color: $btn-danger-hover-color;
+    background-color: $btn-danger-hover-bg;
+    border-color: $btn-danger-hover-border;
+  }
+  &:active {
+    &:hover,
+    &:focus {
+      color: $btn-danger-active-color;
+      background-color: $btn-danger-active-bg;
+      border-color: $btn-danger-active-border;
+      &.disabled {
+        color: $btn-danger-color;
+        background-color: $btn-danger-bg;
+        border-color: $btn-danger-border;
+      }
+    }
+  }
+}
+
+.btn-group {
+  > .btn.btn-default.active {
+    color: $btn-primary-active-color;
+    background-color: $btn-primary-active-bg;
+    border-color: $btn-primary-active-border;
+  }
+}
+
+// Prevent pagination controls from overwriting pulldown menu
+#sidebar {
+  @media (max-width: $screen-xs-max) {
+      z-index: 4;
+  }
+}
